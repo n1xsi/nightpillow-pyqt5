@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QHBoxLayout, QVBoxLayout, QApplication
+from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QGridLayout
 from PyQt5.QtGui import QIcon, QImage, QPalette, QBrush
 from PyQt5.QtCore import QSize, Qt
 from qtwidgets import AnimatedToggle
@@ -49,46 +49,55 @@ class MainWindow(QWidget):
         self.result_label = QLabel(constants.INITIAL_RESULT_TEXT)
 
     def _setup_layouts(self):
-        """Размещает виджеты с помощью менеджеров компоновки."""
-        # Левая колонка с контролами
-        controls_layout = QVBoxLayout()
-        controls_layout.setSpacing(10)
-        controls_layout.addWidget(self.time_label)
-        controls_layout.addWidget(self.time_input)
-        controls_layout.addWidget(self.calculate_button)
-        controls_layout.addStretch()  # Добавляет пустое растягивающееся пространство снизу
+        """
+        Размещает виджеты с помощью сеточного менеджера QGridLayout
+        для точного выравнивания.
+        """
+        # Сеточный layout
+        grid_layout = QGridLayout(self)
 
-        # Центральная колонка с переключателем
-        toggle_layout = QVBoxLayout()
-        toggle_layout.addWidget(self.toggle_label)
-        toggle_layout.addWidget(self.toggle_switch)
-        toggle_layout.addStretch()
+        # Отступы от краёв окна
+        grid_layout.setContentsMargins(18, 55, 20, 20)
+        
+        # Расстояние между колонками и строками
+        grid_layout.setHorizontalSpacing(15)
+        grid_layout.setVerticalSpacing(12)
 
-        # Правая колонка с результатом
-        result_layout = QVBoxLayout()
-        result_layout.addSpacing(125)  # Отступ сверху для выравнивания
-        result_layout.addWidget(self.result_label)
-        result_layout.addStretch()
+        # Размещение виджетов по сетке (строка, колонка)
 
-        # Главный горизонтальный layout
-        main_layout = QHBoxLayout(self)
-        main_layout.setContentsMargins(20, 50, 20, 20)
-        main_layout.addLayout(controls_layout)
-        main_layout.addSpacing(20)
-        main_layout.addLayout(toggle_layout)
-        main_layout.addSpacing(20)
-        # stretch=1 заставляет этот layout занять всё доступное место
-        main_layout.addLayout(result_layout, stretch=1)
+        # Строка 0: Текстовые метки
+        grid_layout.addWidget(self.time_label, 0, 0, Qt.AlignBottom)
+        grid_layout.addWidget(self.toggle_label, 0, 1, Qt.AlignBottom)
+
+        # Строка 1: Поле ввода и переключатель
+        grid_layout.addWidget(self.time_input, 1, 0)
+        # Выравнивание переключателя по верху его ячейки (чтобы он был на уровне с полем ввода)
+        grid_layout.addWidget(self.toggle_switch, 1, 1, Qt.AlignTop)
+
+        # Строка 2: Кнопка и результат
+        grid_layout.addWidget(self.calculate_button, 2, 0)
+        grid_layout.addWidget(self.result_label, 2, 1, 1, 2, Qt.AlignTop)
+
+        # Настройка поведения сетки
+
+        # Добавляем пустое растягивающееся пространство в последнюю колонку (индекс 2),
+        # чтобы прижать все элементы влево и оставить место для картинки.
+        grid_layout.setColumnStretch(2, 1)
+
+        # Добавляем растягивающееся пространство в последнюю строку (индекс 3),
+        # чтобы прижать все элементы вверх.
+        grid_layout.setRowStretch(3, 1)
 
     def _apply_styles(self):
         """Применяет стили к виджетам."""
-        # Общие стили для текста
         base_text_style = f"font-family: {constants.FONT_FAMILY}; font-weight: bold; color: {constants.TEXT_COLOR};"
 
         self.time_label.setStyleSheet(f"{base_text_style} font-size: 16pt;")
         self.toggle_label.setStyleSheet(f"{base_text_style} font-size: 11pt; qproperty-alignment: AlignCenter;")
-        self.result_label.setStyleSheet(
-            f"{base_text_style} font-size: 12pt; qproperty-alignment: AlignLeft; qproperty-wordWrap: True;")
+        self.result_label.setStyleSheet(f"{base_text_style} font-size: 12pt; qproperty-wordWrap: True;")
+
+        # Установим минимальную высоту для метки результата, чтобы текст гарантированно поместился
+        self.result_label.setMinimumHeight(60)
 
         self.time_input.setStyleSheet(f"""
             border: 2.5px solid {constants.PRIMARY_COLOR};
@@ -107,4 +116,3 @@ class MainWindow(QWidget):
         self.calculate_button.setFixedSize(*constants.BUTTON_SIZE)
 
         self.toggle_switch.setFixedSize(*constants.TOGGLE_SIZE)
-        self.result_label.setFixedWidth(250)
