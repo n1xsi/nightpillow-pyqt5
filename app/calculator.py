@@ -9,8 +9,7 @@ class SleepCalculator:
 
     def __init__(self):
         self.sleep_cycle = timedelta(minutes=constants.SLEEP_CYCLE_MINUTES)
-        self.fall_asleep_time = timedelta(
-            minutes=constants.FALL_ASLEEP_MINUTES)
+        self.fall_asleep_time = timedelta(minutes=constants.FALL_ASLEEP_MINUTES)
         self.num_cycles = constants.NUM_CYCLES
 
     def calculate_bed_times(self, wake_up_time_str: str) -> list[str]:

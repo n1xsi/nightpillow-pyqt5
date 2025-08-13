@@ -6,12 +6,14 @@ from qtwidgets import AnimatedToggle
 from . import constants
 from .utils import resource_path
 
+
 class MainWindow(QWidget):
     """
     Главное окно приложения, отвечающее за отображение всех элементов UI.
     Использует абсолютное позиционирование для стабильной отрисовки
     в окне фиксированного размера.
     """
+
     def __init__(self):
         super().__init__()
         self._setup_ui()
@@ -61,14 +63,14 @@ class MainWindow(QWidget):
         base_text_style = f"font-family: {constants.FONT_FAMILY}; font-weight: bold; color: {constants.TEXT_COLOR};"
         self.time_label.setStyleSheet(f"{base_text_style} font-size: 16pt;")
         self.toggle_label.setStyleSheet(f"{base_text_style} font-size: 11pt; qproperty-alignment: AlignCenter;")
-        
+
         self.result_label.setStyleSheet(f"{base_text_style} font-size: 12pt; qproperty-wordWrap: True; qproperty-alignment: AlignCenter;")
         self.result_label.setAlignment(Qt.AlignLeft | Qt.AlignTop)
         self.result_label.setMinimumHeight(60)
 
         self.time_input.setPlaceholderText("23:00")
         self.time_input.setInputMask("00:00")
-        
+
         self.time_input.setStyleSheet(f"""
             background-color: white;
             border: 2.5px solid {constants.PRIMARY_COLOR};
@@ -78,8 +80,8 @@ class MainWindow(QWidget):
         """)
         self.time_input.setAlignment(Qt.AlignCenter)
         self.time_input.setFixedSize(*constants.INPUT_SIZE)
-        
+
         self.calculate_button.setStyleSheet(f"background-color: {constants.PRIMARY_COLOR}; {base_text_style} font-size: 12pt;")
         self.calculate_button.setFixedSize(*constants.BUTTON_SIZE)
-        
+
         self.toggle_switch.setFixedSize(*constants.TOGGLE_SIZE)
