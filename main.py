@@ -64,10 +64,9 @@ def main():
     """Главная функция для запуска приложения."""
     app = QApplication(sys.argv)
 
-    # Создаем компоненты MVC
     view = MainWindow()
     calculator = SleepCalculator()
-    # Контроллер связывает их вместе
+
     controller = AppController(view=view, calculator=calculator)
 
     view.show()
