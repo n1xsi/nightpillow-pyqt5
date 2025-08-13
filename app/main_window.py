@@ -67,6 +67,8 @@ class MainWindow(QWidget):
         self.result_label.setMinimumHeight(60)
 
         self.time_input.setPlaceholderText("23:00")
+        self.time_input.setInputMask("00:00")
+        
         self.time_input.setStyleSheet(f"""
             background-color: white;
             border: 2.5px solid {constants.PRIMARY_COLOR};
