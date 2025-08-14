@@ -1,6 +1,16 @@
 <h1 align="center">
+  <img src="resources/images/preview.png" align="top" alt="NightPillow Preview">
+</h1>
+
+<h1 align="center">
   <img src="resources/images/logo.ico" width="44" align="top" alt="NightPillow Icon">
   PyQt5 App Template: NightPillow
+
+    
+  [![Language](https://custom-icon-badges.demolab.com/badge/Python%203.10+-293b56?logo=pythonn)](#)
+  [![Lib](https://custom-icon-badges.demolab.com/badge/PyQt5%205.15+-293b56?logo=pyqt)](#)
+  [![License](https://custom-icon-badges.demolab.com/badge/License%20MIT-293b56?logo=law&label)](https://github.com/n1xsi/paasword-tkinter/blob/main/LICENSE)
+  
 </h1>
 
 Приложение для расчёта оптимального времени сна **«NightPillow»** — это простой проект-шаблон для создания десктопных приложений на Python с использованием фреймворка **PyQt5**.
