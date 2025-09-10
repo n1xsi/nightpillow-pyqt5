@@ -9,7 +9,7 @@
     
   [![Language](https://custom-icon-badges.demolab.com/badge/Python%203.10+-293b56?logo=pythonn)](#)
   [![Lib](https://custom-icon-badges.demolab.com/badge/PyQt5%205.15+-293b56?logo=pyqt)](#)
-  [![License](https://custom-icon-badges.demolab.com/badge/License%20MIT-293b56?logo=law&label)](LICENSE)
+  [![License](https://custom-icon-badges.demolab.com/badge/License%20MIT-293b56?logo=law)](LICENSE)
   
 </h1>
 
